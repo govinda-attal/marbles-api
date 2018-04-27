@@ -1,0 +1,4 @@
+debug*
+/vendor
+/dist
+/config/crypto-config

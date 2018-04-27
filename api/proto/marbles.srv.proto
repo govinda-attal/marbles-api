@@ -1,0 +1,39 @@
+syntax = "proto3";
+
+package proto;
+
+
+import "google/api/annotations.proto";
+
+option go_package = "github.com/govinda-attal/marbles-api/pkg";
+
+service Marbles {
+    rpc Transfer(TransferMarbleRq) returns (TransferMarbleRs) {
+        option (google.api.http) = {
+            post: "/v1/transfer"
+            body: "*"
+        };
+    }
+    rpc Fetch(FetchMarbleRq) returns (FetchMarbleRs) {
+        option (google.api.http).get = "/v1/fetch/{name}";
+    }
+}
+
+message TransferMarbleRq {
+    string name = 1;
+    string newOwner = 2;
+}
+
+message TransferMarbleRs {
+    string txID = 1;
+}
+
+message FetchMarbleRq {
+    string name = 1;
+}
+
+message FetchMarbleRs {
+    string name = 1;
+    string owner = 2;
+    int32 size = 3;
+}

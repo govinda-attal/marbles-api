@@ -1,0 +1,29 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: ${APP_NAME}
+  labels:
+    app: ${APP_NAME}
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: ${APP_NAME}
+    spec:
+      containers:
+      - name: ${APP_NAME}-grpc
+        #image: gattal/${APP_NAME}:${TAG}
+        image: asia.gcr.io/fabric-blockchain/${APP_NAME}-grpc:${TAG}
+        workingDir: /app
+        command: ["./app"]
+        ports:
+          - containerPort: 10000
+      - name: ${APP_NAME}-gw
+        #image: gattal/${APP_NAME}:${TAG}
+        image: asia.gcr.io/fabric-blockchain/${APP_NAME}-gw:${TAG}
+        workingDir: /app
+        command: ["./app"]
+        ports:
+          - containerPort: 8080
+        

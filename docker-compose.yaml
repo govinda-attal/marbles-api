@@ -1,0 +1,21 @@
+version: '3'
+services:
+  grpc:
+    image: asia.gcr.io/fabric-blockchain/marbles-api-grpc:6e03191
+    ports:
+      - "10000:10000"
+    command: './app'
+    container_name: grpc
+    network_mode: host
+
+  gw:
+    image: asia.gcr.io/fabric-blockchain/marbles-api-gw:6e03191
+    ports:
+      - "8080:8080"
+    command: './app'
+    container_name: gw
+    network_mode: host
+    depends_on:
+      - grpc
+networks:
+  basic:
