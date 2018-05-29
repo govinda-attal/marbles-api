@@ -11,7 +11,32 @@ spec:
       labels:
         app: ${APP_NAME}
     spec:
+      # [START secret-1]
+      volumes:
+        - name: service-account-creds
+          secret:
+            secretName: service-account-creds
+      # [END secret-1]
       containers:
+      # [START esp]
+      - name: esp
+        image: gcr.io/endpoints-release/endpoints-runtime:1
+        args: [
+          "--http_port", "8081",
+          "--backend", "127.0.0.1:8080",
+          "--service", "marbles-api.endpoints.fabric-blockchain.cloud.goog",
+          "--rollout_strategy", "managed",
+          "--service_account_key", "/etc/nginx/creds/service-account-creds.json"
+        ]      
+        ports:
+          - containerPort: 8081
+        # [START secret-2]
+        volumeMounts:
+          - mountPath: /etc/nginx/creds
+            name: service-account-creds
+            readOnly: true
+        # [END secret-2]
+      # [END esp]
       - name: ${APP_NAME}-grpc
         #image: gattal/${APP_NAME}:${TAG}
         image: asia.gcr.io/fabric-blockchain/${APP_NAME}-grpc:${TAG}
