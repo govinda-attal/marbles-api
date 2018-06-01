@@ -1,5 +1,5 @@
 #!/bin/bash
 
-cd marbles-api
+cd source-repo
 
 make init
