@@ -2,4 +2,6 @@
 
 cd $(ls | head -n1)
 
-make pack
+make_cmd=$1
+
+make $make_cmd
