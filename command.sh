@@ -1,5 +1,5 @@
 #!/bin/bash
 
-cd source-repo
+cd $(ls | head -n1)
 
-make init
+make pack
