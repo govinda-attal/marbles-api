@@ -47,7 +47,7 @@ spec:
       - name: ${APP_NAME}-gw
         #image: gattal/${APP_NAME}:${TAG}
         #image: asia.gcr.io/fabric-blockchain/${APP_NAME}-gw:${TAG}
-        image: asia.gcr.io/fabric-blockchain/${APP_NAME}-gw
+        image: asia.gcr.io/fabric-blockchain/${APP_NAME}-gw:${TAG}
         workingDir: /app
         command: ["./app"]
         ports:
