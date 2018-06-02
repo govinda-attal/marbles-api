@@ -10,6 +10,8 @@ gke_zone=$7
 gcloud_sa_key_path=key.json
 
 
+mv $source_dir marbles-api
+
 cd $source_dir
 
 cat > key.json <<EOF
