@@ -41,8 +41,8 @@ upload:
 	gcloud docker -- push asia.gcr.io/fabric-blockchain/$(APP_NAME)-gw:$(TAG)
 
 deploy:	
-	envsubst < k8s/deployment.yaml | kubectl apply -f -
-	envsubst < k8s/service.yaml | kubectl apply -f -
+	#envsubst < k8s/deployment.yaml | kubectl apply -f -
+	#envsubst < k8s/service.yaml | kubectl apply -f -
 	envsubst < k8s/ingress.yaml | kubectl apply -f -
 ship: init test pack upload deploy clean
 

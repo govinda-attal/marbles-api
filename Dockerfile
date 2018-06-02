@@ -5,7 +5,7 @@ WORKDIR /go/src/github.com/govinda-attal/marbles-api
 COPY . .
 RUN apk add --no-cache curl 
 RUN curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh
-#RUN dep ensure
+RUN dep ensure
 RUN cd ./cmd/grpc && go build -o /dist/grpc/app
 RUN cp ./config /dist/grpc -r
 RUN cd ./cmd/gw && go build -o /dist/gw/app
