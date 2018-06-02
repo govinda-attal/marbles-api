@@ -18,6 +18,7 @@ EOF
 
 
 gcloud auth activate-service-account $gcloud_sa --key-file=$gcloud_sa_key_path --project=$gcloud_project
-gcloud container clusters get-credentials $gke --zone $gke_zone --project $gcloud_project
+echo gcloud container clusters get-credentials $gke --zone $gke_zone --project $gcloud_project
+gcloud container clusters get-credentials $gke --zone australia-southeast1-a --project $gcloud_project
 
 make $make_cmd
