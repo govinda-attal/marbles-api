@@ -3,7 +3,7 @@ FROM golang:1.10-alpine AS build-env
 ENV APP_NAME=goapp
 WORKDIR /go/src/github.com/govinda-attal/marbles-api
 COPY . .
-RUN apk add --no-cache curl 
+RUN apk add --no-cache curl bash git openssh
 RUN curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh
 RUN dep ensure
 RUN cd ./cmd/grpc && go build -o /dist/grpc/app
