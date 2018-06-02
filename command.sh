@@ -1,20 +1,18 @@
 #!/bin/bash
 
-make_cmd=$1
-gcloud_project= $2
-gcloud_sa_key=$3
+source_dir=$1
+make_cmd=$2
+gcloud_project= $3
+gcloud_sa=$4
+gcloud_sa_key=$5
 gcloud_sa_key_path=key.json
+
+
+cd $source_dir
 
 cat > key.json <<EOF
 $gcloud_sa_key
 EOF
-
-cat key.json
-
-gcloud auth activate-service-account test-service-account@google.com --key-file=$gcloud_sa_key_path --project=$gcloud_project
-
-cd $(ls | head -n1)
-
-make_cmd=$1
+gcloud auth activate-service-account $gcloud_sa --key-file=$gcloud_sa_key_path --project=$gcloud_project
 
 make $make_cmd
