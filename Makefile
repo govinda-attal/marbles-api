@@ -3,8 +3,9 @@
 include .env
 export $(shell sed 's/=.*//' .env)
 
-APP_NAME=$(shell basename $(CURDIR))
+#APP_NAME=$(shell basename $(CURDIR))
 #TAG?=$(shell git rev-list HEAD --max-count=1 --abbrev-commit)
+APP_NAME=marbles-api
 TAG=latest
 
 
