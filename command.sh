@@ -13,6 +13,9 @@ cd $source_dir
 cat > key.json <<EOF
 $gcloud_sa_key
 EOF
+
+
+echo gcloud auth activate-service-account $gcloud_sa --key-file=$gcloud_sa_key_path --project=$gcloud_project
 gcloud auth activate-service-account $gcloud_sa --key-file=$gcloud_sa_key_path --project=$gcloud_project
 
 make $make_cmd
