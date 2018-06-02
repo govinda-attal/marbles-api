@@ -2,7 +2,7 @@
 
 source_dir=$1
 make_cmd=$2
-gcloud_project= $3
+gcloud_project=$3
 gcloud_sa=$4
 gcloud_sa_key=$5
 gcloud_sa_key_path=key.json
