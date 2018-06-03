@@ -12,7 +12,7 @@ produces:
 host: marbles-api.endpoints.fabric-blockchain.cloud.goog
 x-google-endpoints:
   - name: marbles-api.endpoints.fabric-blockchain.cloud.goog
-    target: 35.189.22.143
+    target: 35.189.19.142
 paths:
   '/v1/fetch/{name}':
     get:
