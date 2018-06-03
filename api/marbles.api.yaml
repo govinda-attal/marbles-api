@@ -1,0 +1,79 @@
+swagger: '2.0'
+info:
+  title: Marbles API (grpc gateway)
+  version: '1.0.0'
+schemes:
+  - http
+  - https
+consumes:
+  - application/json
+produces:
+  - application/json
+host: marbles-api.endpoints.fabric-blockchain.cloud.goog
+x-google-endpoints:
+  - name: marbles-api.endpoints.fabric-blockchain.cloud.goog
+    target: 35.189.22.143
+paths:
+  '/v1/fetch/{name}':
+    get:
+      operationId: Fetch
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/protoFetchMarbleRs'
+      parameters:
+        - name: name
+          in: path
+          required: true
+          type: string
+      tags:
+        - Marbles
+  /v1/transfer:
+    post:
+      operationId: Transfer
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/protoTransferMarbleRs'
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/protoTransferMarbleRq'
+      tags:
+        - Marbles
+definitions:
+  protoFetchMarbleRs:
+    type: object
+    properties:
+      name:
+        type: string
+      owner:
+        type: string
+      size:
+        type: integer
+        format: int32
+  protoTransferMarbleRq:
+    type: object
+    properties:
+      name:
+        type: string
+      newOwner:
+        type: string
+  protoTransferMarbleRs:
+    type: object
+    properties:
+      txID:
+        type: string
+# This section requires all requests to any path to require an API key.
+security:
+- api_key: []
+securityDefinitions:
+  # This section configures basic authentication with an API key.
+  api_key:
+    type: "apiKey"
+    name: "key"
+    in: "query"
